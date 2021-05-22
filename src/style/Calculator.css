@@ -1,0 +1,77 @@
+.calculator {
+  display: flex;
+  flex-direction: column;
+  max-width: 35%;
+  height: 100%;
+  margin: auto;
+}
+
+.calculator-child {
+  border: 2px solid rgb(174, 174, 174);
+  background-color: rgb(211, 211, 211);
+  border-radius: 50px;
+  width: 100%;
+  margin: auto;
+  padding: 15px 10px;
+}
+
+.operator {
+  width: 75%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.operation-class {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 15px;
+  background-color: rgb(146, 196, 125);
+  border-radius: 5px;
+  border: 2px solid rgb(137, 171, 124);
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size: 24px;
+  cursor: pointer;
+  margin: auto;
+  outline: none;
+}
+
+.operation-class:hover {
+  background-color: rgb(159, 207, 138);
+  border-radius: 5px;
+  border: 2px solid rgb(174, 174, 174);
+  color: rgb(243, 242, 242);
+  outline: none;
+}
+
+.clear-class {
+  width: 20%;
+  margin: auto;
+}
+
+.clear-child-class {
+  text-align: center;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 5px;
+  background-color: rgb(208, 223, 227);
+  border: 2px solid rgb(175, 176, 177);
+  cursor: pointer;
+}
+
+.clear-child-class:hover {
+  background-color: rgb(215, 226, 230);
+  border: 2px solid rgb(175, 176, 177);
+}
+
+.output-class {
+  width: 30%;
+  margin: 15px auto;
+  border-radius: 5px;
+  padding: 5px 0px;
+  text-align: center;
+  background-color: white;
+  border: 2px solid rgb(175, 176, 177);
+}
