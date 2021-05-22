@@ -1,63 +1,60 @@
 import React, { useState } from "react";
 import Input from "./Input";
+import validate from "../Functions/validate";
+import operateTwoNumbers from "../Functions/operations";
 import "../style/Calculator.css";
 
 function Calculator() {
-  const operateTwoNumbers = (operation, inputOne, inputTwo, setOutput) => {
-    switch (operation) {
-      case "Addition": {
-        setOutput(parseInt(inputOne) + parseInt(inputTwo));
-        break;
-      }
-      case "Subtraction": {
-        setOutput(inputOne - inputTwo);
-        break;
-      }
-      case "Multiplication": {
-        setOutput(inputOne * inputTwo);
-        break;
-      }
-      case "Division": {
-        setOutput(inputOne / inputTwo);
-        break;
-      }
-      default:
-        setOutput("Output");
-    }
-  };
-
   const operations = [
-    { operation: "Addition", operator: "+" },
-    { operation: "Subtraction", operator: "-" },
-    { operation: "Multiplication", operator: "*" },
-    { operation: "Division", operator: "/" },
+    { operation: "Addition", operator: "+", id: "plus" },
+    { operation: "Subtraction", operator: "-", id: "minus" },
+    { operation: "Multiplication", operator: "*", id: "multiply" },
+    { operation: "Division", operator: "/", id: "divide" },
   ];
 
-  const [inputOne, setInputOne] = useState(0);
-  const [inputTwo, setInputTwo] = useState(0);
+  const [inputOne, setInputOne] = useState(" ");
+  const [inputTwo, setInputTwo] = useState(" ");
 
   const [output, setOutput] = useState("Output");
+
+  const [error, setError] = useState(false);
 
   return (
     <div className="calculator">
       <div className="calculator-child">
+        {error ? (
+          <div className="error-class">Check the inputs again</div>
+        ) : (
+          " "
+        )}
         <div className="form-class">
-          <Input setInputOne={setInputOne} setInputTwo={setInputTwo}></Input>
+          <Input
+            setInputOne={setInputOne}
+            setInputTwo={setInputTwo}
+            setError={setError}
+            inputOne={inputOne}
+            inputTwo={inputTwo}
+          ></Input>
           <div className="operator">
             {operations && operations.length > 0
               ? operations.map((items) => {
-                  const { operation, operator } = items;
+                  const { operation, operator, id } = items;
                   return (
                     <div
-                      key={operation}
+                      key={id}
                       className="operation-class"
+                      id={id}
                       onClick={() => {
-                        operateTwoNumbers(
-                          operation,
-                          inputOne,
-                          inputTwo,
-                          setOutput
-                        );
+                        if (validate(inputOne, inputTwo, setError)) {
+                          operateTwoNumbers(
+                            operation,
+                            inputOne,
+                            inputTwo,
+                            setOutput
+                          );
+                        } else {
+                          setError(true);
+                        }
                       }}
                     >
                       {operator}
@@ -67,9 +64,22 @@ function Calculator() {
               : " "}
           </div>
           <div className="clear-class">
-            <div className="clear-child-class">Clear</div>
+            <div
+              className="clear-child-class"
+              id="clear"
+              onClick={() => {
+                setInputOne(" ");
+                setInputTwo(" ");
+                setOutput("Output");
+                setError(false);
+              }}
+            >
+              Clear
+            </div>
           </div>
-          <div className="output-class">{output}</div>
+          <div className="output-class" id="output">
+            {output}
+          </div>
         </div>
       </div>
     </div>
