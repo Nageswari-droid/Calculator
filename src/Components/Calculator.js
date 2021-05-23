@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Input from "./Input";
 import validate from "../Functions/validate";
 import operateTwoNumbers from "../Functions/operations";
@@ -17,6 +17,9 @@ function Calculator() {
 
   const [output, setOutput] = useState("Output");
 
+  let inputOneRef = useRef();
+  let inputTwoRef = useRef();
+
   const [error, setError] = useState(false);
 
   return (
@@ -31,9 +34,9 @@ function Calculator() {
           <Input
             setInputOne={setInputOne}
             setInputTwo={setInputTwo}
+            inputOneRef={inputOneRef}
+            inputTwoRef={inputTwoRef}
             setError={setError}
-            inputOne={inputOne}
-            inputTwo={inputTwo}
           ></Input>
           <div className="operator">
             {operations && operations.length > 0
@@ -68,8 +71,9 @@ function Calculator() {
               className="clear-child-class"
               id="clear"
               onClick={() => {
-                setInputOne(" ");
-                setInputTwo(" ");
+                inputOneRef.current.value = " ";
+                inputTwoRef.current.value = " ";
+
                 setOutput("Output");
                 setError(false);
               }}
