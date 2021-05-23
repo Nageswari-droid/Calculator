@@ -80,6 +80,7 @@
 .output-class {
   min-width: 30%;
   width: fit-content;
+  max-width: 75%;
   margin: 15px auto;
   border-radius: 5px;
   padding: 5px;

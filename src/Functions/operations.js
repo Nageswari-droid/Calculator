@@ -13,7 +13,7 @@ const operateTwoNumbers = (operation, inputOne, inputTwo, setOutput) => {
       break;
     }
     case "Division": {
-      setOutput(inputOne / inputTwo);
+      setOutput((inputOne / inputTwo).toFixed(5));
       break;
     }
     default:
