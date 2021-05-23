@@ -12,8 +12,8 @@ function Calculator() {
     { operation: "Division", operator: "/", id: "divide" },
   ];
 
-  const [inputOne, setInputOne] = useState(" ");
-  const [inputTwo, setInputTwo] = useState(" ");
+  const [inputOne, setInputOne] = useState("Enter any number");
+  const [inputTwo, setInputTwo] = useState("Enter any number");
 
   const [output, setOutput] = useState("Output");
 
@@ -36,6 +36,8 @@ function Calculator() {
             setInputTwo={setInputTwo}
             inputOneRef={inputOneRef}
             inputTwoRef={inputTwoRef}
+            inputOne={inputOne}
+            inputTwo={inputTwo}
             setError={setError}
           ></Input>
           <div className="operator">
@@ -71,9 +73,10 @@ function Calculator() {
               className="clear-child-class"
               id="clear"
               onClick={() => {
-                inputOneRef.current.value = " ";
-                inputTwoRef.current.value = " ";
-
+                inputOneRef.current.value = null;
+                inputTwoRef.current.value = null;
+                setInputOne("Enter any number");
+                setInputTwo("Enter any number");
                 setOutput("Output");
                 setError(false);
               }}

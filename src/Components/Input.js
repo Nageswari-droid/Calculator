@@ -7,19 +7,25 @@ function Input({
   setError,
   inputOneRef,
   inputTwoRef,
+  inputOne,
+  inputTwo,
 }) {
-  const inputBox = (inputId, placeholder, setInputState, inputRef) => {
+  const inputBox = (inputId, setInputState, inputRef, inputValue) => {
     return (
       <input
         className="input-box"
-        type="text"
+        type="number"
         id={inputId}
         autoComplete="off"
-        placeholder={placeholder}
+        placeholder={inputValue}
         ref={inputRef}
         onChange={(event) => {
           let value = event.currentTarget.value;
-          setInputState(parseInt(value));
+          if (value) {
+            setInputState(parseInt(value));
+          } else {
+            setInputState(0);
+          }
           setError(false);
         }}
         required
@@ -29,8 +35,8 @@ function Input({
 
   return (
     <div className="input-class">
-      {inputBox("input_one", "Enter any number", setInputOne, inputOneRef)}
-      {inputBox("input_two", "Enter any number", setInputTwo, inputTwoRef)}
+      {inputBox("input_one", setInputOne, inputOneRef, inputOne)}
+      {inputBox("input_two", setInputTwo, inputTwoRef, inputTwo)}
     </div>
   );
 }
